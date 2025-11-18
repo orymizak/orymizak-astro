@@ -1,0 +1,31 @@
+---
+const homeTexts = {
+  title: "Hola, soy David Orymizak",
+  subtitle: "Programador Full Stack",
+  subtitle2: "Lo mínimo. Lo esencial",
+  button: "Ver proyectos",
+};
+
+---
+
+<section
+  id="home"
+  class="relative flex flex-col items-center justify-center min-h-screen text-center px-4 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800"
+  style="
+    background-color: #04050e; /* azul muy oscuro */
+    background-image: url('/assets/images/background.webp');
+    background-size: cover;      /* ocupa todo el contenedor sin deformarse */
+    background-repeat: no-repeat;
+    background-position: center; /* centrado vertical y horizontal */
+  "
+>
+  <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fadeIn">{homeTexts.title}</h1>
+  <p class="text-xl md:text-2xl mb-3 animate-fadeIn delay-200">{homeTexts.subtitle}</p>
+  <p class="text-xl md:text-1xl mb-6 animate-fadeIn delay-200">{homeTexts.subtitle2}</p>
+  <a
+    href="#projects"
+    class="border border-neon-blue text-neon-blue px-6 py-3 rounded hover:bg-neon-blue hover:text-white transition animate-fadeIn delay-400"
+  >
+    {homeTexts.button}
+  </a>
+</section>

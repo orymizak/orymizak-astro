@@ -1,0 +1,104 @@
+---
+const headerTexts = {
+  name: "David Orymizak",
+  projects: "Proyectos",
+  contact: "Contacto",
+  about: "Sobre mí",
+  home: "Inicio",
+  drawer: "☰",
+  cv: "Mi CV",
+};
+---
+
+<header class="hidden md:flex fixed w-full z-50 justify-between items-center p-4 bg-white dark:bg-gray-900 shadow-md">
+  <div class="text-xl font-bold">{headerTexts.name}</div>
+  <nav class="flex space-x-8">
+    <a href="/" class="border border-neon-blue text-neon-blue px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{headerTexts.home}</a>
+    <a href="/about" class="border border-neon-blue text-neon-blue px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{headerTexts.about}</a>
+    <a href="/projects" class="border border-neon-green text-neon-green px-4 py-2 rounded hover:bg-neon-green hover:text-white transition">{headerTexts.projects}</a>
+    <a href="/cv" class="border border-neon-pink text-neon-pink px-4 py-2 rounded hover:bg-neon-pink hover:text-white transition">{headerTexts.cv}</a>
+    <a href="/contact" class="border border-neon-yellow text-neon-yellow px-4 py-2 rounded hover:bg-neon-yellow hover:text-white transition">{headerTexts.contact}</a>
+  </nav>
+</header>
+
+<!-- Drawer móvil: visible solo en móvil -->
+<div class="md:hidden flex justify-between items-center p-4 fixed w-full z-50 bg-transparent">
+  <!-- botón drawer -->
+  <button id="menu-toggle" class="p-2 rounded">{headerTexts.drawer}</button>
+  <div class="text-xl font-bold">{headerTexts.name}</div>
+</div>
+
+<!-- Menú móvil -->
+<div id="mobile-menu"
+     class="fixed top-0 left-0 w-40 bg-white dark:bg-gray-900 z-40 h-screen p-6 flex flex-col space-y-4 transform -translate-x-full transition-transform duration-300 md:hidden"
+     style="padding-top: 4rem;">
+  <a href="/" class="px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{headerTexts.home}</a>
+  <a href="/about" class="px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{headerTexts.about}</a>
+  <a href="/projects" class="px-4 py-2 rounded hover:bg-neon-green hover:text-white transition">{headerTexts.projects}</a>
+  <a href="/cv" class="px-4 py-2 rounded hover:bg-neon-pink hover:text-white transition">{headerTexts.cv}</a>
+  <a href="/contact" class="px-4 py-2 rounded hover:bg-neon-yellow hover:text-white transition">{headerTexts.contact}</a>
+</div>
+<!-- Fondo del drawer -->
+<div id="drawer-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+<script type="module">
+
+  const backdrop = document.getElementById('drawer-backdrop');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  const drawerLinks = menu?.querySelectorAll('a');
+
+  const phoneResolution = 768;
+
+  // función de cerrar el drawer
+  function closeDrawer() {
+    if (menu && backdrop) {
+      menu.classList.add('-translate-x-full');
+      menu.classList.remove('translate-x-0');
+
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+      backdrop.classList.remove('opacity-50', 'pointer-events-auto');
+    }
+  }
+
+  // detectar interacciones del drawer
+  if (toggle && menu && backdrop) {
+
+    // interactuar con el drawer
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('-translate-x-full');
+      menu.classList.toggle('translate-x-0');
+
+      backdrop.classList.toggle('opacity-0');
+      backdrop.classList.toggle('opacity-50');
+      backdrop.classList.toggle('pointer-events-none');
+      backdrop.classList.toggle('pointer-events-auto');
+    });
+
+    // click fuera para cerrar drawer
+    backdrop.addEventListener('click', closeDrawer);
+
+    // click en link para cerrar drawer
+    drawerLinks?.forEach(link => link.addEventListener('click', closeDrawer));
+
+    // si ventana aumenta de tamaño, cerrar el drawer automáticamente
+    window.addEventListener('resize', () => window.innerWidth >= phoneResolution && closeDrawer());
+
+    // click en link para cerrar drawer solo si es la misma página
+    drawerLinks?.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        const currentPath = window.location.pathname;
+
+        if (href === currentPath) {
+          closeDrawer();
+          e.preventDefault();
+        } else {
+          closeDrawer();
+        }
+      });
+    });
+  }
+
+</script>

@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import { META, FAVICONS, GOOGLE_FONTS } from '../constants';
+
+const { title } = Astro.props;
+
+const metaTitle = title ?? META.title;
+---
+
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>{metaTitle}</title>
+    <meta name="description" content={META.description}/>
+    <meta name="keywords" content={META.keywords}/>
+    <meta name="author" content={META.author}/>
+    <meta name="robots" content={META.robots}/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content={metaTitle}/>
+    <meta property="og:description" content={META.description}/>
+    <meta property="og:url" content={META.url}/>
+    <meta property="og:image" content={META.image}/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content={metaTitle}/>
+    <meta name="twitter:description" content={META.description}/>
+    <meta name="twitter:image" content={META.image}/>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href={FAVICONS.ico}/>
+    <link rel="icon" type="image/png" sizes="16x16" href={FAVICONS.png16}/>
+    <link rel="icon" type="image/png" sizes="32x32" href={FAVICONS.png32}/>
+    <link rel="apple-touch-icon" sizes="180x180" href={FAVICONS.appleTouch}/>
+    <link rel="icon" type="image/png" sizes="192x192" href={FAVICONS.android192}/>
+    <link rel="icon" type="image/png" sizes="512x512" href={FAVICONS.android512}/>
+    <link rel="manifest" href={FAVICONS.manifest}/>
+    <meta name="theme-color" content={FAVICONS.themeColor}/>
+
+    <!-- Fonts -->
+    <link href={GOOGLE_FONTS} rel="stylesheet"/>
+  </head>
+
+  <body class="font-roboto bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500">
+    <slot/>
+  </body>
+</html>

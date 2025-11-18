@@ -1,0 +1,103 @@
+---
+const techs = [
+  "/assets/images/softwares/apps/electron.png",
+  "/assets/images/softwares/apps/flutter.png",
+  "/assets/images/softwares/build/vite.png",
+  "/assets/images/softwares/databases/non-sql/firebase.png",
+  "/assets/images/softwares/databases/non-sql/mongo.png",
+  "/assets/images/softwares/databases/sql/informix.png",
+  "/assets/images/softwares/databases/sql/mysql.png",
+  "/assets/images/softwares/databases/sql/postgres.png",
+  "/assets/images/softwares/databases/sql/sqlite.png",
+  "/assets/images/softwares/databases/sql/sybase.png",
+  "/assets/images/softwares/frameworks/angular.png",
+  "/assets/images/softwares/frameworks/bootstrap.svg",
+  "/assets/images/softwares/frameworks/codeigniter.webp",
+  "/assets/images/softwares/frameworks/next.js.png",
+  "/assets/images/softwares/frameworks/node.js.svg",
+  "/assets/images/softwares/frameworks/react.png",
+  "/assets/images/softwares/frameworks/spring-boot.svg",
+  "/assets/images/softwares/frameworks/spring.svg",
+  "/assets/images/softwares/frameworks/tailwind.svg",
+  "/assets/images/softwares/ide/android_studio.png",
+  "/assets/images/softwares/ide/brackets.png",
+  "/assets/images/softwares/ide/intellij.png",
+  "/assets/images/softwares/ide/netbeans.png",
+  "/assets/images/softwares/ide/sublime-text.webp",
+  "/assets/images/softwares/ide/vim.svg",
+  "/assets/images/softwares/ide/vs.svg",
+  "/assets/images/softwares/ide/vscode.png",
+  "/assets/images/softwares/languages/web/css.png",
+  "/assets/images/softwares/languages/web/html5.png",
+  "/assets/images/softwares/languages/web/javascript.webp",
+  "/assets/images/softwares/languages/c++.png",
+  "/assets/images/softwares/languages/csharp.png",
+  "/assets/images/softwares/languages/dart.png",
+  "/assets/images/softwares/languages/java.png",
+  "/assets/images/softwares/languages/javascript.png",
+  "/assets/images/softwares/languages/lua.png",
+  "/assets/images/softwares/languages/php.png",
+  "/assets/images/softwares/languages/python.png",
+  "/assets/images/softwares/languages/typescript.png",
+  "/assets/images/softwares/os/google.png",
+  "/assets/images/softwares/os/macos.png",
+  "/assets/images/softwares/os/redhat.png",
+  "/assets/images/softwares/os/ubuntu.png",
+  "/assets/images/softwares/os/windows.svg",
+  "/assets/images/softwares/platforms/atlassian-bamboo.webp",
+  "/assets/images/softwares/platforms/atlassian.png",
+  "/assets/images/softwares/platforms/confluence.png",
+  "/assets/images/softwares/platforms/GCP.png",
+  "/assets/images/softwares/platforms/jira.svg",
+  "/assets/images/softwares/server/apache.png",
+  "/assets/images/softwares/server/cloudflare.webp",
+  "/assets/images/softwares/server/docker.png",
+  "/assets/images/softwares/server/openshift.webp",
+  "/assets/images/softwares/tools/sonarqube.png",
+  "/assets/images/softwares/version-controllers/bitbucket.webp",
+  "/assets/images/softwares/version-controllers/git.png",
+  "/assets/images/softwares/version-controllers/github.png",
+  "/assets/images/softwares/version-controllers/gitlab.png",
+  "/assets/images/softwares/version-controllers/tortoise-git.svg",
+  "/assets/images/softwares/ia/chatgpt.png",
+  "/assets/images/softwares/ia/gemini.png",
+  "/assets/images/softwares/ia/copilot.png",
+  "/assets/images/softwares/intereses/aws.png",
+  "/assets/images/softwares/intereses/azure.svg",
+  "/assets/images/softwares/intereses/django.png",
+  "/assets/images/softwares/intereses/go.png",
+  "/assets/images/softwares/intereses/graphql.png",
+  "/assets/images/softwares/intereses/Jenkins.png",
+  "/assets/images/softwares/intereses/kafka.png",
+  "/assets/images/softwares/intereses/kotlin.png",
+  "/assets/images/softwares/intereses/kubernetes.png",
+  "/assets/images/softwares/intereses/laravel.png",
+  "/assets/images/softwares/intereses/net.png",
+  "/assets/images/softwares/intereses/swift.png",
+  "/assets/images/softwares/intereses/vue.js.png",
+];
+---
+
+<div class="overflow-hidden py-6 bg-gray-50 dark:bg-gray-900">
+  <div class="flex animate-marquee space-x-8">
+
+    {techs.map(tech => <img src={tech} class="h-12 w-auto" alt="tech"/>)}
+    {techs.map(tech => <img src={tech} class="h-12 w-auto" alt="tech"/>)}
+
+  </div>
+</div>
+
+<style>
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content; /* importante para que el contenedor tenga el ancho total de sus elementos */
+    animation: marquee 250s linear infinite;
+  }
+
+</style>

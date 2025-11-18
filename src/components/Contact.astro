@@ -1,0 +1,20 @@
+---
+const contactTexts = {
+  title: "Contacto",
+  emailPlaceholder: "Correo electrónico",
+  messagePlaceholder: "Tu mensaje",
+  description: "Por favor, indica tu nombre, tu mensaje y si quieres añadir algún medio de contacto adicional...",
+  sendButton: "Enviar"
+};
+
+---
+<section id="contact" class="bg-white dark:bg-gray-900 py-20 px-6">
+  <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">{contactTexts.title}</h2>
+  <p class="text-center mb-8 text-gray-700 dark:text-gray-300">{contactTexts.description}</p>
+  
+  <form class="max-w-xl mx-auto grid gap-4">
+    <input type="email" placeholder={contactTexts.emailPlaceholder} class="border px-4 py-2 rounded w-full" required/>
+    <textarea placeholder={contactTexts.messagePlaceholder} class="border px-4 py-2 rounded w-full" rows="5" required/>
+    <button type="submit" class="border border-neon-yellow text-neon-yellow px-6 py-3 rounded hover:bg-neon-yellow hover:text-white transition w-full">{contactTexts.sendButton}</button>
+  </form>
+</section>

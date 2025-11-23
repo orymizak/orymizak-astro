@@ -1,9 +1,9 @@
-import { DEFAULT_LOCALE, ENGLISH, i18n_LANGUAGES, type Lang } from '../constants';
+import { CONST_DEFAULT_LOCALE, CONST_ENGLISH, CONST_i18n_LANGUAGES, type Lang } from '../constants';
 
 export function getTexts(locale?: string) {
-  return i18n_LANGUAGES[(locale && locale in i18n_LANGUAGES ? locale : DEFAULT_LOCALE) as Lang];
+  return CONST_i18n_LANGUAGES[(locale && locale in CONST_i18n_LANGUAGES ? locale : CONST_DEFAULT_LOCALE) as Lang];
 }
 
 export function getI18nStaticPaths() {
-  return [{ params: { locale: DEFAULT_LOCALE } }, { params: { locale: ENGLISH } }];
+  return [{ params: { locale: CONST_DEFAULT_LOCALE } }, { params: { locale: CONST_ENGLISH } }];
 }

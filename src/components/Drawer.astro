@@ -1,19 +1,23 @@
 ---
-import { DEFAULT_LOCALE, EMPTY_STRING, ENGLISH, SLASH, CARET } from "../constants";
+import { CONST_DEFAULT_LOCALE, CONST_EMPTY_STRING, CONST_ENGLISH, CONST_SLASH, LOCALE_PREFIX_REGEX } from "../constants";
 import { getI18nStaticPaths, getTexts } from "../i18n/index";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-const currentLocale: string = Astro.currentLocale ?? DEFAULT_LOCALE;
-const newLocale: string = currentLocale === ENGLISH ? DEFAULT_LOCALE : ENGLISH;
+const currentLocale: string = Astro.currentLocale ?? CONST_DEFAULT_LOCALE;
+const newLocale: string = currentLocale === CONST_ENGLISH ? CONST_DEFAULT_LOCALE : CONST_ENGLISH;
 
 // limpiar la ruta de prefijo del idioma actual
-const cleanRoute = Astro.url.pathname.replace(new RegExp(`${CARET}${SLASH}${currentLocale}`), EMPTY_STRING) || SLASH;
-const switcherUrl = getRelativeLocaleUrl(newLocale, cleanRoute);
+const pathWithoutLocale = Astro.url.pathname.replace(LOCALE_PREFIX_REGEX, CONST_EMPTY_STRING) || CONST_SLASH;
+const switcherUrl = `${CONST_SLASH}${newLocale}${pathWithoutLocale}`;
 
 export const getStaticPaths = getI18nStaticPaths;
 const text = getTexts(Astro.params.locale);
 
 export interface Props {}
+interface DrawerLink {
+  text: string;
+  path: string;
+}
 
 ---
 
@@ -21,7 +25,7 @@ export interface Props {}
 <header class="hidden md:flex fixed w-full z-50 justify-between items-center p-4">
   <div class="text-xl font-bold">{text.drawer.name}</div>
   <nav class="flex space-x-8">
-    {text.drawerLinks.map((link) => (
+    {text.drawerLinks.map((link: DrawerLink) => (
       <a href={getRelativeLocaleUrl(currentLocale, link.path)}
       class="border border-neon-blue text-neon-blue px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{link.text}</a>))}
 
@@ -40,7 +44,7 @@ export interface Props {}
 
 <div id="mobile-menu" style="padding-top: 4rem;"
   class="fixed top-0 left-0 w-40 bg-white dark:bg-gray-900 z-40 h-screen p-6 flex flex-col space-y-4 transform -translate-x-full transition-transform duration-300 md:hidden">
-  {text.drawerLinks.map((link) => (
+  {text.drawerLinks.map((link: DrawerLink) => (
     <a href={getRelativeLocaleUrl(currentLocale, link.path)}
     class="px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{link.text}</a>))}
 

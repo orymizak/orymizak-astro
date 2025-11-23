@@ -62,6 +62,11 @@ El manejo de rutas se realiza utilizando `i18n.mode = "manual"` y middleware per
 
 ## Versionamiento
 
+### 0.0.3 – Soporte de idiomas
+- Ajustes en versión
+- Ajustes en navegación de rutas dinámicas
+- Ajustes en manejo de parámetros y constantes
+
 ### 0.0.2 – Soporte de idiomas
 - Implementación de i18n en modo manual.  
 - Carpetas dinámicas para ES/EN.  

@@ -6,42 +6,45 @@ import en from "./i18n/en";
 
 // exportaciones
 // constantes texto
-export const i18n_MODE_MANUAL = "manual"; 
-export const EMPTY_STRING = "";
-export const SPANISH = "es";
-export const ENGLISH = "en";
-export const SLASH = "/";
-export const CARET = "^";
-export const STRING_RESIZE = "resize";
+export const CONST_i18n_MODE_MANUAL = "manual"; 
+export const CONST_EMPTY_STRING = "";
+export const CONST_SPANISH = "es";
+export const CONST_ENGLISH = "en";
+export const CONST_SLASH = "/";
+export const CONST_CARET = "^";
+export const CONST_STRING_RESIZE = "resize";
 
 // arreglos
-export const SUPPORTED_LOCALES = [SPANISH, ENGLISH]; // ["es", "en"]
+export const CONST_SUPPORTED_LOCALES = [CONST_SPANISH, CONST_ENGLISH]; // ["es", "en"]
+
+// regex
+export const LOCALE_PREFIX_REGEX = /^\/(es|en)/;
 
 // constantes numéricas
-export const REDIRECT_STATUS = 302;
-export const PHONE_RESOLUTION = 768;
+export const CONST_REDIRECT_STATUS = 302;
+export const CONST_PHONE_RESOLUTION = 768;
 
 // constantes compuestas
-export const DEFAULT_LOCALE = SPANISH; // es
-export const DEFAULT_PATH = SLASH + DEFAULT_LOCALE; // /es
+export const CONST_DEFAULT_LOCALE = CONST_SPANISH; // es
+export const CONST_DEFAULT_PATH = CONST_SLASH + CONST_DEFAULT_LOCALE; // /es
 
 // configuraciones
 
 // arreglos
-export const i18n_LANGUAGES = { es, en };
+export const CONST_i18n_LANGUAGES = { es, en };
 
 // types
-export type Lang = keyof typeof i18n_LANGUAGES;
+export type Lang = keyof typeof CONST_i18n_LANGUAGES;
 
-export const i18n_SETUP = {
-  mode: i18n_MODE_MANUAL, // manual
-  defaultLocale: DEFAULT_LOCALE, // es
-  locales: SUPPORTED_LOCALES, // ["es", "en"]
+export const CONST_i18n_SETUP = {
+  mode: CONST_i18n_MODE_MANUAL, // manual
+  defaultLocale: CONST_DEFAULT_LOCALE, // es
+  locales: CONST_SUPPORTED_LOCALES, // ["es", "en"]
 }
 
-export const vite_SETUP = {
+export const CONST_vite_SETUP = {
   plugins: [tailwindcss()]
 }
 
 // versionamiento
-export const CURRENT_VERSION = pkg.version;
+export const CONST_CURRENT_VERSION = pkg.version;

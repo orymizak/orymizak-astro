@@ -62,6 +62,9 @@ El manejo de rutas se realiza utilizando `i18n.mode = "manual"` y middleware per
 
 ## Versionamiento
 
+### 0.0.3 – Ajuste de imports
+- Se remueven archivos que aún no están listos para esta versión
+
 ### 0.0.3 – Soporte de idiomas
 - Ajustes en versión
 - Ajustes en navegación de rutas dinámicas

@@ -76,28 +76,32 @@ const techs = [
   "/assets/images/softwares/intereses/swift.png",
   "/assets/images/softwares/intereses/vue.js.png",
 ];
+
 ---
 
-<div class="overflow-hidden py-6 bg-gray-50 dark:bg-gray-900">
+<div class="overflow-hidden py-6 bg-gray-50 dark:bg-gray-900 marquee">
   <div class="flex animate-marquee space-x-8">
-
-    {techs.map(tech => <img src={tech} class="h-12 w-auto" alt="tech"/>)}
-    {techs.map(tech => <img src={tech} class="h-12 w-auto" alt="tech"/>)}
-
+    { techs.map((tech) => <img src={tech} class="h-12 w-auto tech" alt="tech" />) }
+    { techs.map((tech) => <img src={tech} class="h-12 w-auto tech" alt="tech" />) }
   </div>
 </div>
 
 <style>
-
   @keyframes marquee {
     0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  img.tech {
+    filter:
+      drop-shadow(0.2px 0.2px 0.2px white)
+      drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))
+      drop-shadow(0 0 1px white);
   }
 
   .animate-marquee {
     display: flex;
-    width: max-content; /* importante para que el contenedor tenga el ancho total de sus elementos */
+    width: max-content;
     animation: marquee 250s linear infinite;
   }
-
 </style>

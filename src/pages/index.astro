@@ -1,11 +1,6 @@
 ---
-import { BaseLayout, Drawer, Home, Footer, TechCarousel } from '../imports';
-import { indexTitle } from '../constants';
----
+import { CONST_DEFAULT_PATH } from "../constants";
 
-<BaseLayout title={indexTitle}>
-  <Drawer />
-  <Home />
-  <TechCarousel />
-  <Footer />
-</BaseLayout>
+return Astro.redirect(CONST_DEFAULT_PATH);
+
+---

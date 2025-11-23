@@ -1,51 +1,57 @@
 ---
 import '../styles/global.css';
-import { META, FAVICONS, GOOGLE_FONTS } from '../constants';
+import { getI18nStaticPaths, getTexts } from "../i18n/index";
+import { Drawer } from '../imports';
+
+interface Props {
+  title?: string;
+}
+
+export const getStaticPaths = getI18nStaticPaths;
+const text = getTexts(Astro.params.locale);
 
 const { title } = Astro.props;
+const metaTitle = title ?? text.META.title;
 
-const metaTitle = title ?? META.title;
 ---
 
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth" view-transition-name="root">
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>{metaTitle}</title>
-    <meta name="description" content={META.description}/>
-    <meta name="keywords" content={META.keywords}/>
-    <meta name="author" content={META.author}/>
-    <meta name="robots" content={META.robots}/>
+    <meta name="description" content={text.META.description}/>
+    <meta name="keywords" content={text.META.keywords}/>
+    <meta name="author" content={text.META.author}/>
+    <meta name="robots" content={text.META.robots}/>
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website"/>
     <meta property="og:title" content={metaTitle}/>
-    <meta property="og:description" content={META.description}/>
-    <meta property="og:url" content={META.url}/>
-    <meta property="og:image" content={META.image}/>
+    <meta property="og:description" content={text.META.description}/>
+    <meta property="og:url" content={text.META.url}/>
+    <meta property="og:image" content={text.META.image}/>
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content={metaTitle}/>
-    <meta name="twitter:description" content={META.description}/>
-    <meta name="twitter:image" content={META.image}/>
+    <meta name="twitter:description" content={text.META.description}/>
+    <meta name="twitter:image" content={text.META.image}/>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href={FAVICONS.ico}/>
-    <link rel="icon" type="image/png" sizes="16x16" href={FAVICONS.png16}/>
-    <link rel="icon" type="image/png" sizes="32x32" href={FAVICONS.png32}/>
-    <link rel="apple-touch-icon" sizes="180x180" href={FAVICONS.appleTouch}/>
-    <link rel="icon" type="image/png" sizes="192x192" href={FAVICONS.android192}/>
-    <link rel="icon" type="image/png" sizes="512x512" href={FAVICONS.android512}/>
-    <link rel="manifest" href={FAVICONS.manifest}/>
-    <meta name="theme-color" content={FAVICONS.themeColor}/>
-
-    <!-- Fonts -->
-    <link href={GOOGLE_FONTS} rel="stylesheet"/>
+    <!-- FavIcon -->
+    <link rel="icon" type="image/x-icon" href={text.FAVICONS.ico}/>
+    <link rel="icon" type="image/png" sizes="16x16" href={text.FAVICONS.png16}/>
+    <link rel="icon" type="image/png" sizes="32x32" href={text.FAVICONS.png32}/>
+    <link rel="apple-touch-icon" sizes="180x180" href={text.FAVICONS.appleTouch}/>
+    <link rel="icon" type="image/png" sizes="192x192" href={text.FAVICONS.android192}/>
+    <link rel="icon" type="image/png" sizes="512x512" href={text.FAVICONS.android512}/>
+    <link rel="manifest" href={text.FAVICONS.manifest}/>
+    <meta name="theme-color" content={text.FAVICONS.themeColor}/>
   </head>
 
-  <body class="font-roboto bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500">
+  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500">
+    <Drawer/>
     <slot/>
   </body>
 </html>

@@ -1,41 +1,50 @@
-// páginas astro
+// importaciones
+import tailwindcss from "@tailwindcss/vite";
+import pkg from "../package.json";
+import es from "./i18n/es";
+import en from "./i18n/en";
 
-// index
-export const indexTitle = "David Orymizak - Full Stack Developer";
+// exportaciones
+// constantes texto
+export const CONST_i18n_MODE_MANUAL = "manual"; 
+export const CONST_EMPTY_STRING = "";
+export const CONST_SPANISH = "es";
+export const CONST_ENGLISH = "en";
+export const CONST_SLASH = "/";
+export const CONST_CARET = "^";
+export const CONST_STRING_RESIZE = "resize";
 
-// about
-export const aboutTexts = {
-  title: "Sobre mí",
-  desc1: "Soy desarrollador Full Stack apasionado por la tecnología, por lo nuevo. Me gusta reinventar, renovar, innovar. En sintonía con los proyectos de legado.",
-  desc2: "Disfruto aprender de todo, contribuir, conectar con las personas y compartir tiempo de calidad con mi familia y amigos.",
-  img1: "test",
-  img2: "test",
-  img3: "test",
-  img4: "test"
-};
+// arreglos
+export const CONST_SUPPORTED_LOCALES = [CONST_SPANISH, CONST_ENGLISH]; // ["es", "en"]
 
-// componentes
+// regex
+export const LOCALE_PREFIX_REGEX = /^\/(es|en)/;
 
-// BaseLayout
-export const META = {
-  title: "David Orymizak - Full Stack Developer",
-  description: "Portafolio profesional de David Orymizak, mostrando proyectos, habilidades y contacto.",
-  keywords: "Full Stack, Developer, Portfolio, JavaScript, React, Node, Astro",
-  author: "David Orymizak",
-  robots: "index, follow",
-  url: "https://orymizak.com",
-  image: "/assets/images/hero-preview.png",
-};
+// constantes numéricas
+export const CONST_REDIRECT_STATUS = 302;
+export const CONST_PHONE_RESOLUTION = 768;
 
-export const FAVICONS = {
-  ico: "/favicon.ico",
-  png16: "/favicon-16x16.png",
-  png32: "/favicon-32x32.png",
-  appleTouch: "/apple-touch-icon.png",
-  android192: "/android-chrome-192x192.png",
-  android512: "/android-chrome-512x512.png",
-  manifest: "/manifest.json",
-  themeColor: "#000000",
-};
+// constantes compuestas
+export const CONST_DEFAULT_LOCALE = CONST_SPANISH; // es
+export const CONST_DEFAULT_PATH = CONST_SLASH + CONST_DEFAULT_LOCALE; // /es
 
-export const GOOGLE_FONTS = "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap";
+// configuraciones
+
+// arreglos
+export const CONST_i18n_LANGUAGES = { es, en };
+
+// types
+export type Lang = keyof typeof CONST_i18n_LANGUAGES;
+
+export const CONST_i18n_SETUP = {
+  mode: CONST_i18n_MODE_MANUAL, // manual
+  defaultLocale: CONST_DEFAULT_LOCALE, // es
+  locales: CONST_SUPPORTED_LOCALES, // ["es", "en"]
+}
+
+export const CONST_vite_SETUP = {
+  plugins: [tailwindcss()]
+}
+
+// versionamiento
+export const CONST_CURRENT_VERSION = pkg.version;

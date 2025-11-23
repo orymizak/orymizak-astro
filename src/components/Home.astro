@@ -1,0 +1,29 @@
+---
+import InteractiveBG from "../components/InteractiveBG.astro";
+import { getI18nStaticPaths, getTexts } from "../i18n/index";
+import TechCarousel from "./TechCarousel.astro";
+
+export const getStaticPaths = getI18nStaticPaths;
+const text = getTexts(Astro.params.locale);
+
+export interface Props {}
+
+---
+
+<InteractiveBG/>
+
+<section class="text-container">
+  <h1 class="text-4xl md:text-6xl font-bold mb-8 text-outline text-shadow">{text.home.title}</h1>
+  <p class="text-xl md:text-2xl font-bold mb-2 text-shadow">{text.home.subtitle}</p>
+  <p class="text-xl md:text-1xl font-bold mb-8 italic text-shadow">{text.home.subtitle2}</p>
+
+  <p class="text-xl md:text-3xl font-bold mb-2 italic text-shadow">{text.home.subtitle3}</p>
+
+  <p class="text-xl md:text-1xl font-bold mb-2 italic text-shadow">
+    <a href={`mailto:${text.home.contact}`} class="underline hover:text-neon-blue transition">
+      {text.home.contact}
+    </a>
+  </p>
+</section>
+
+<TechCarousel/>

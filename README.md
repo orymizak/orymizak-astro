@@ -62,7 +62,12 @@ El manejo de rutas se realiza utilizando `i18n.mode = "manual"` y middleware per
 
 ## Versionamiento
 
-### 0.0.3 – Ajuste de imports
+### 0.0.5 – Ajuste de imports
+- Se ajusta la posición dinámica del cursor interactivo
+- Se ajusta el ruteo del index
+- Se corrigen ajustes menores de variables
+
+### 0.0.4 – Ajuste de imports
 - Se remueven archivos que aún no están listos para esta versión
 
 ### 0.0.3 – Soporte de idiomas

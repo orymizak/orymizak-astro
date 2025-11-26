@@ -110,9 +110,8 @@ html, body {
     position: fixed;
     width: 200px;
     height: 200px;
-    top: -15vh;
-    left: -15vh;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
     mix-blend-mode: var(--blending);
     pointer-events: none;
@@ -148,3 +147,7 @@ html, body {
     align-items: center;
     gap: 1rem;
   }
+  
+@media (min-width: 768px) {
+  .text-outline { -webkit-text-stroke: .5px black; }
+}

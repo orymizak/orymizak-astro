@@ -1,13 +1,3 @@
----
-const target = "/es";
----
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <title>Redirigiendo...</title>
-  </head>
-  <body>
-    Redirigiendo a <a href={target}>{target}</a>
-  </body>
-</html>
+<script>
+  window.location.replace("/es/");
+</script>

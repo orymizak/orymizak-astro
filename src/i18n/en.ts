@@ -1,3 +1,9 @@
+/**
+ * English translation file (EN).
+ *
+ * Contains all user-facing texts for the English version of the site.
+ * The structure must match the ES file to ensure consistency across translations.
+ */
 export default {
   index: {
     indexTitle: "David Orymizak — Full-Stack Developer",

@@ -1,5 +1,16 @@
 ---
-import '../styles/global.css';
+/**
+ * Layout principal del proyecto.
+ *
+ * Funcionalidad:
+ * - Obtiene los textos del idioma actual mediante getTexts().
+ * - Define rutas estáticas multilenguaje con getStaticPaths (usando Astro i18n).
+ * - Genera automáticamente los metadatos SEO + OpenGraph + Twitter.
+ * - Inserta el Drawer de navegación y el contenido de cada página usando <slot/>.
+ *
+ * Params:
+ * @prop {string} [title] - Título que puede establecer una página (opcional).
+ */
 import { getI18nStaticPaths, getTexts } from "../i18n/index";
 import { Drawer } from '../imports';
 
@@ -50,8 +61,12 @@ const metaTitle = title ?? text.META.title;
     <meta name="theme-color" content={text.FAVICONS.themeColor}/>
   </head>
 
-  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500">
+  <body>
+
+    <!-- menú de navegación -->
     <Drawer/>
+
+    <!-- contenido dinámico de la página -->
     <slot/>
   </body>
 </html>

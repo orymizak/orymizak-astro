@@ -1,6 +1,14 @@
 ---
+/**
+ * Página de redirección.
+ *
+ * Redirige automáticamente a la ruta por defecto definida en las constantes.
+ * Se usa como punto de entrada para usuarios sin locale explícito.
+ * 
+ * Cloudflare actualmente gestiona la redirección, pero por si alguna forma es forzado,
+ * este sitio se encargará de redirigir a /es/
+ */
 import { CONST_DEFAULT_PATH } from "../constants";
 
 return Astro.redirect(CONST_DEFAULT_PATH);
-
 ---

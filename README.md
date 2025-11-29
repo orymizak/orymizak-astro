@@ -62,11 +62,14 @@ El manejo de rutas se realiza utilizando `i18n.mode = "manual"` y middleware per
 
 ## Versionamiento
 
+<<<<<<< HEAD
 ### 0.0.6 – Se ajusta diseño
 - Se configura modo claro y oscuro al diseño
 - Se ajusta diseño en general
 - Se documentan funciones esenciales
 
+=======
+>>>>>>> main
 ### 0.0.5 – Ajuste de imports
 - Se ajusta la posición dinámica del cursor interactivo
 - Se ajusta el ruteo del index

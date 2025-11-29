@@ -2,6 +2,9 @@
 import { CONST_DEFAULT_LOCALE, CONST_EMPTY_STRING, CONST_ENGLISH, CONST_SLASH, LOCALE_PREFIX_REGEX } from "../constants";
 import { getI18nStaticPaths, getTexts } from "../i18n/index";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import ThemeToggle from "./ThemeToggle.astro";
+
+import '../styles/global.css';
 
 const currentLocale: string = Astro.currentLocale ?? CONST_DEFAULT_LOCALE;
 const newLocale: string = currentLocale === CONST_ENGLISH ? CONST_DEFAULT_LOCALE : CONST_ENGLISH;
@@ -14,6 +17,7 @@ export const getStaticPaths = getI18nStaticPaths;
 const text = getTexts(Astro.params.locale);
 
 export interface Props {}
+
 interface DrawerLink {
   text: string;
   path: string;
@@ -21,89 +25,71 @@ interface DrawerLink {
 
 ---
 
-<!-- headers -->
-<header class="hidden md:flex fixed w-full z-50 justify-between items-center p-4">
-  <div class="text-xl font-bold">{text.drawer.name}</div>
-  <nav class="flex space-x-8">
+<div class="drawer-wrapper fixed w-full z-50 flex justify-between items-center p-4 bg-transparent">
+  <button class="menu-toggle md:hidden p-2 rounded">{text.drawer.drawer}</button>
+  <div></div>
+
+  <nav class="menu flex flex-col md:flex-row md:space-x-8 space-y-6 md:static fixed top-0 left-0 w-64 md:w-auto h-screen md:h-auto bg-white dark:bg-gray-900 md:bg-transparent md:dark:bg-transparent p-6 md:p-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40">
+
     {text.drawerLinks.map((link: DrawerLink) => (
       <a href={getRelativeLocaleUrl(currentLocale, link.path)}
-      class="border border-neon-blue text-neon-blue px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{link.text}</a>))}
+         class="flex items-center md:justify-center px-6 py-4 md:py-2 rounded md:border 
+         text-black dark:text-white
+         md:dark:border-purple-400 md:dark:text-purple-400
+         hover:bg-purple-400 hover:text-white
+         transition">{link.text}</a>
+    ))}
 
-    <!-- botón cambio de idioma -->
     <a href={switcherUrl}
-    class="border border-purple-400 text-purple-400 px-4 py-2 rounded hover:bg-purple-400 hover:text-white transition">
-      {newLocale.toUpperCase()}</a>
+       class="flex items-center md:justify-center px-6 py-4 md:py-2 rounded md:border 
+       text-black dark:text-white
+       md:dark:border-purple-400 md:dark:text-purple-400
+       hover:bg-purple-400 hover:text-white
+       transition">
+      {newLocale.toUpperCase()}
+    </a>
+
+    <ThemeToggle clase="flex items-center justify-center px-6 py-4 md:py-2 rounded md:border text-black dark:text-white md:dark:border-purple-400 md:dark:text-purple-400 hover:bg-purple-400 hover:text-white transition cursor-pointer" />
+
   </nav>
-</header>
-
-<!-- drawer móvil -->
-<div class="md:hidden flex justify-between items-center p-4 fixed w-full z-50 bg-transparent">
-  <button id="menu-toggle" class="p-2 rounded">{text.drawer.drawer}</button>
-  <div class="text-xl font-bold">{text.drawer.name}</div>
 </div>
 
-<div id="mobile-menu" style="padding-top: 4rem;"
-  class="fixed top-0 left-0 w-40 bg-white dark:bg-gray-900 z-40 h-screen p-6 flex flex-col space-y-4 transform -translate-x-full transition-transform duration-300 md:hidden">
-  {text.drawerLinks.map((link: DrawerLink) => (
-    <a href={getRelativeLocaleUrl(currentLocale, link.path)}
-    class="px-4 py-2 rounded hover:bg-neon-blue hover:text-white transition">{link.text}</a>))}
+<!-- backdrop solo en móvil -->
+<div class="drawer-backdrop fixed inset-0 bg-black bg-opacity-50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
 
-  <!-- botón cambio de idioma -->
-  <a href={switcherUrl}
-  class="px-4 py-2 rounded border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transition">
-    {newLocale.toUpperCase()}</a>
-</div>
+<script is:inline type="module">
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".drawer-wrapper");
+  const toggle = wrapper.querySelector(".menu-toggle");
+  const menu = wrapper.querySelector(".menu");
+  const backdrop = document.querySelector(".drawer-backdrop");
 
-<div id="drawer-backdrop"
-  class="fixed inset-0 bg-black bg-opacity-50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
-</div>
+  const closeDrawer = () => {
+    menu.classList.add("-translate-x-full");
+    menu.classList.remove("translate-x-0");
+    backdrop.classList.add("opacity-0", "pointer-events-none");
+    backdrop.classList.remove("opacity-50", "pointer-events-auto");
+  }
 
-<script type="module">
-  document.addEventListener("DOMContentLoaded", () => {
-
-    const backdrop = document.getElementById("drawer-backdrop");
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("mobile-menu");
-
-    if (!toggle || !menu || !backdrop) {
-      return;
-    }
-
-    function closeDrawer() {
-      menu.classList.add("-translate-x-full");
-      menu.classList.remove("translate-x-0");
-      backdrop.classList.add("opacity-0", "pointer-events-none");
-      backdrop.classList.remove("opacity-50", "pointer-events-auto");
-    }
-
-    // listener para el toggle
-    toggle.addEventListener("click", (e) => {
-      menu.classList.toggle("-translate-x-full");
-      menu.classList.toggle("translate-x-0");
-      backdrop.classList.toggle("opacity-0");
-      backdrop.classList.toggle("opacity-50");
-      backdrop.classList.toggle("pointer-events-none");
-      backdrop.classList.toggle("pointer-events-auto");
-    });
-
-    // listener para el backdrop
-    backdrop.addEventListener("click", (e) => {
-      closeDrawer();
-    });
-
-    // listener para cada link del drawer
-    const drawerLinks = menu.querySelectorAll("a");
-    drawerLinks.forEach(link =>
-      link.addEventListener("click", (e) => {
-        closeDrawer();
-      })
-    );
-
-    // listener resize
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= 768) {
-        closeDrawer();
-      }
-    });
+  // listener para el toggle
+  toggle?.addEventListener("click", () => {
+    menu.classList.toggle("-translate-x-full");
+    menu.classList.toggle("translate-x-0");
+    backdrop.classList.toggle("opacity-0");
+    backdrop.classList.toggle("opacity-50");
+    backdrop.classList.toggle("pointer-events-none");
+    backdrop.classList.toggle("pointer-events-auto");
   });
+
+  // listener para el backdrop
+  backdrop?.addEventListener("click", closeDrawer);
+
+  // listener para cada link del drawer
+  menu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeDrawer));
+
+  // listener resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) closeDrawer();
+  });
+});
 </script>

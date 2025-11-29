@@ -1,16 +1,21 @@
+/**
+ * Archivo de traducciones en español (ES).
+ *
+ * Este archivo contiene todos los textos visibles para el usuario en la versión en español del sitio.
+ * La estructura debe mantenerse igual que en otros idiomas (por ejemplo: en.ts), ya que cada clave corresponde a un texto traducible.
+ *
+ * Notas:
+ * - Los campos deben coincidir exactamente entre idiomas.
+ * - Se pueden agregar o remover secciones, pero deben mantenerse sincronizadas entre idiomas.
+ * - Este archivo es consumido por la función getTexts() del sistema i18n.
+ */
 export default {
   index: {
     indexTitle: "David Orymizak - Full Stack Developer",
   },
 
   aboutMe: {
-    title: "About me",
-    desc1: "...",
-    desc2: "...",
-    img1: "test",
-    img2: "test",
-    img3: "test",
-    img4: "test",
+    title: "Sobre mí",
     techTitle: "Technologies used in this site",
     iconsCopyright: "Icons provided by Icons8",
   },

@@ -1,2 +1,34 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@-moz-document url-prefix() {
+
+  /* Ajustes para Firefox */
+  /* Quitar animaciones de fondo */
+  .gradient-bg,
+  .gradient-bg *,
+  .gradient-bg::before,
+  .gradient-bg::after {
+    animation: none !important;
+    animation-name: none !important;
+    animation-duration: 0s !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+    filter: none !important;
+  }
+
+  /* Figuras estáticas */
+  .g1, .g2, .g3, .g4, .g5 {
+    transform: none !important;
+    background-size: 100% 100% !important;
+  }
+
+  /* Figuras estáticas */
+  .gradients-container,
+  .g1, .g2, .g3, .g4, .g5,
+  .interactive {
+    mix-blend-mode: normal !important;
+    opacity: 0.5 !important;
+  }
+}

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Ajustes para Firefox */
 @-moz-document url-prefix() {
 
-  /* Ajustes para Firefox */
   /* Quitar animaciones de fondo */
   .gradient-bg,
   .gradient-bg *,

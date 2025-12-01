@@ -62,6 +62,11 @@ El manejo de rutas se realiza utilizando `i18n.mode = "manual"` y middleware per
 
 ## Versionamiento
 
+### 0.0.8 – Optimización de diseño
+- Se añaden mejoras al diseño del layout principal
+- Ajuste al zoom en móvil
+- Mejoras de optimización
+
 ### 0.0.7 – Optimización de rendimiento en Firefox
 - Se añaden configuraciones para modo rendimiento en Firefox
 

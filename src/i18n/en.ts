@@ -52,6 +52,11 @@ export default {
     subtitle2: "Minimal. Essential",
     subtitle3: "Under construction",
     contact: "orymizak@hotmail.com",
+    cv: "Curriculum Vitae",
+    download: "Download CV",
+    contactheader: "Contact",
+    contactemail: "Have a project or an opportunity? Let's talk",
+    cvURL: "https://docs.google.com/document/d/1RU6d9yOLuYT_GMWQCitFke4sjEoECdJTJ-KzSbt-1Xg"
   },
 
   project: {

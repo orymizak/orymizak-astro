@@ -1,0 +1,74 @@
+---
+import { getI18nStaticPaths, getTexts } from "../i18n/index";
+import "../styles/about.scss";
+
+export const getStaticPaths = getI18nStaticPaths;
+const text = getTexts(Astro.params.locale);
+
+export interface Props {}
+
+---
+
+<section class="text-section">
+  <div class="card">Bloque 1: Lorem ipsum dolor sit amet.</div>
+  <div class="card">Bloque 2: Consectetur adipiscing elit.</div>
+  <div class="card">Bloque 3: Sed do eiusmod tempor incididunt.</div>
+  <div class="card">Bloque 4: Ut labore et dolore magna aliqua.</div>
+  <div class="card">Bloque 5: Duis aute irure dolor in reprehenderit.</div>
+</section>
+
+<script type="module">
+const cards = document.querySelectorAll('.card');
+
+// --- 1. Intersection Observer (Para saber dónde estamos) ---
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const card = entry.target;
+    if (!(card instanceof HTMLElement)) return;
+
+    if (entry.isIntersecting) {
+      // Limpia la clase 'visible' en todas las tarjetas
+      cards.forEach(c => c.classList.remove('visible')); 
+      // Añade 'visible' solo a la tarjeta actual
+      card.classList.add('visible'); 
+    }
+  });
+}, { threshold: 0.8 }); // Usaremos un threshold más alto (e.g., 0.8) para mayor precisión
+
+cards.forEach(card => observer.observe(card));
+
+// --- 2. Manejador de Teclas de Navegación ---
+document.addEventListener('keydown', (e) => {
+    // Solo actuamos si la tarjeta actual visible está presente
+    const currentCard = document.querySelector('.card.visible');
+    if (!currentCard) return;
+
+    let targetCard; // La tarjeta a la que queremos movernos
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        // MUY IMPORTANTE: Previene el desplazamiento por defecto del navegador.
+        e.preventDefault(); 
+        
+        if (e.key === 'ArrowDown') {
+            // Intenta obtener el siguiente elemento hermano
+            targetCard = currentCard.nextElementSibling;
+        } else if (e.key === 'ArrowUp') {
+            // Intenta obtener el elemento hermano anterior
+            targetCard = currentCard.previousElementSibling;
+        }
+
+        // Verifica que el elemento existe y que es una tarjeta
+        if (targetCard && targetCard.classList.contains('card')) {
+            // Forzamos el desplazamiento suave al nuevo elemento
+            targetCard.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start' // Asegura que el inicio de la tarjeta quede alineado
+            }); 
+            
+            // Para asegurar que la clase se actualice inmediatamente (Opcional)
+            cards.forEach(c => c.classList.remove('visible'));
+            targetCard.classList.add('visible');
+        }
+    }
+});
+</script>

@@ -1,0 +1,40 @@
+---
+import { getI18nStaticPaths, getTexts } from "../i18n/index";
+import "../styles/About.scss";
+
+export const getStaticPaths = getI18nStaticPaths;
+const text = getTexts(Astro.params.locale);
+
+export interface Props {}
+
+---
+
+<section class="text-section">
+  <div class="card">Bloque 1: Lorem ipsum dolor sit amet.</div>
+  <div class="card">Bloque 2: Consectetur adipiscing elit.</div>
+  <div class="card">Bloque 3: Sed do eiusmod tempor incididunt.</div>
+  <div class="card">Bloque 4: Ut labore et dolore magna aliqua.</div>
+  <div class="card">Bloque 5: Duis aute irure dolor in reprehenderit.</div>
+</section>
+
+<style>
+
+</style>
+
+<script type="module">
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const card = entry.target;
+    if (!(card instanceof HTMLElement)) return;
+
+    if (entry.isIntersecting) {
+      cards.forEach(c => c.classList.remove('visible'));
+      card.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+
+cards.forEach(card => observer.observe(card));
+</script>

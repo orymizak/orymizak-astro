@@ -1,0 +1,11 @@
+---
+import { getI18nStaticPaths, getTexts } from "../../i18n/index";
+import { BaseLayout, AboutPage } from "../../imports";
+
+export const getStaticPaths = getI18nStaticPaths;
+const text = getTexts(Astro.params.locale);
+
+---
+<BaseLayout title={text.aboutMe.title}>
+  <AboutPage />
+</BaseLayout>

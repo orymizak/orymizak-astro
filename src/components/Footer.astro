@@ -1,0 +1,95 @@
+---
+const today = new Date();
+import { Icon } from "astro-icon/components";
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="copyright text-xl md:text-3xl font-bold mb-2 text-shadow">
+      © {today.getFullYear()} <strong>David Orymizak</strong>. All rights reserved.
+    </p>
+
+    <div class="social-links">
+      <!-- Social -->
+      <a href="https://linkedin.com/in/orymizak" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <Icon name="linkedin" size={20} /></a>
+
+      <a href="mailto:orymizak@hotmail.com" aria-label="Email">
+        <Icon name="email" size={20} /></a>
+
+      <a href="https://github.com/orymizak" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <Icon name="github-mark-white" size={20} /></a>
+
+      <a href="https://facebook.com/orymizak" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <Icon name="facebook" size={20} /></a>
+
+      <a href="https://wa.me/5216671184674" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <Icon name="whatsapp" size={20} /></a>
+
+      <!-- Separador -->
+      <span class="separator" aria-hidden="true"></span>
+
+      <!-- Media -->
+      <a href="https://jellyfin.orymizak.com" target="_blank" rel="noopener noreferrer" aria-label="Jellyfin">
+        <Icon name="jellyfin" size={20} /></a>
+
+      <a href="https://navidrome.orymizak.com" target="_blank" rel="noopener noreferrer" aria-label="Navidrome">
+        <Icon name="navidrome" size={20} /></a>
+    </div>
+  </div>
+</footer>
+
+<style>
+    .site-footer {
+  border-top: 1px solid rgb(var(--gray-light));
+  background-color: rgb(var(--bg));
+  color: rgb(var(--gray));
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.copyright {
+  font-size: 0.875rem;
+  opacity: 0.75;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--gray));
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+  color: rgb(var(--accent));
+  transform: translateY(-2px);
+}
+
+.social-links a:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.separator {
+  width: 1px;
+  height: 24px;
+  background: white;
+}
+
+</style>
